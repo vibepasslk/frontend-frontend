@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR scanner - VibePass.lk</title>
+  <meta name="description" content="Validate VibePass.lk QR tickets at event entrances." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/scanner" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="QR scanner - VibePass.lk" />
+  <meta property="og:description" content="Validate VibePass.lk QR tickets at event entrances." />
+  <meta property="og:url" content="https://vibepass.lk/scanner" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="QR scanner - VibePass.lk" />
+  <meta name="twitter:description" content="Validate VibePass.lk QR tickets at event entrances." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="icon" href="../assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body data-dashboard="scanner">
+  <nav class="navbar scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo"><img src="../assets/images/Logo-192.png" alt="VibePass" class="logo-img" /><span class="logo-text">VibePass<span class="logo-lk">.lk</span></span></a>
+      <div class="nav-actions" data-keep-auth="true">
+        <a href="organizer-dashboard.html" class="btn btn-ghost">Dashboard</a>
+        <button class="btn btn-primary" type="button" data-logout>Sign out</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="auth-page">
+    <section class="auth-card" style="max-width:560px;">
+      <div class="auth-logo">
+        <img src="../assets/images/Logo-192.png" alt="VibePass" />
+      </div>
+      <h1 class="auth-title">QR access validation</h1>
+      <p class="auth-sub">Paste or scan a VibePass QR ticket code to approve or deny entry.</p>
+
+      <form id="scannerForm">
+        <div class="form-group">
+          <label class="form-label" for="qr_code">QR ticket code</label>
+          <input class="form-input" id="qr_code" name="qr_code" autocomplete="off" required />
+        </div>
+        <button class="form-submit" type="submit">Validate ticket</button>
+      </form>
+      <div id="scannerResult" class="scan-result">Waiting for a QR code.</div>
+    </section>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

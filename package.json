@@ -1,0 +1,12 @@
+{
+  "name": "vibepass-frontend",
+  "version": "1.0.0",
+  "description": "VibePass.lk static HTML, CSS, and JavaScript frontend for Vercel.",
+  "private": true,
+  "scripts": {
+    "build": "node -e \"console.log('Static frontend: no build step required')\""
+  },
+  "engines": {
+    "node": ">=18.18"
+  }
+}

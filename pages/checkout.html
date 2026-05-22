@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - VibePass.lk</title>
+  <meta name="description" content="Complete secure event ticket checkout on VibePass.lk." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/checkout" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Checkout - VibePass.lk" />
+  <meta property="og:description" content="Complete secure event ticket checkout on VibePass.lk." />
+  <meta property="og:url" content="https://vibepass.lk/checkout" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Checkout - VibePass.lk" />
+  <meta name="twitter:description" content="Complete secure event ticket checkout on VibePass.lk." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="icon" href="../assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body>
+  <nav class="navbar scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/Logo-192.png" alt="VibePass" class="logo-img" />
+        <span class="logo-text">VibePass<span class="logo-lk">.lk</span></span>
+      </a>
+      <div class="nav-actions">
+        <a href="dashboard.html" class="btn btn-ghost">Dashboard</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="app-shell">
+    <section class="container" style="padding:42px 24px 72px;">
+      <div class="checkout-layout">
+        <div class="detail-panel">
+          <div class="section-label">Payment gateway checkout</div>
+          <h1 style="font-size:clamp(30px,5vw,48px);margin-bottom:10px;">Complete your ticket order</h1>
+          <p style="color:var(--text-2);margin-bottom:24px;">PayPal is prepared through environment variables. In local sandbox mode you can verify the order to generate QR tickets.</p>
+
+          <div id="orderSummary" class="dash-list"></div>
+          <div id="ticketList" class="dash-list" style="margin-top:18px;"></div>
+        </div>
+
+        <aside class="tool-panel">
+          <h2 style="font-size:20px;margin-bottom:14px;">Payment status</h2>
+          <p id="paymentStatus" style="color:var(--text-2);margin-bottom:18px;">Loading...</p>
+          <button class="form-submit" id="verifyPaymentBtn" type="button">Verify sandbox payment</button>
+          <p style="font-size:12px;color:var(--text-3);margin-top:14px;line-height:1.6;">Live PayPal capture should be connected inside the payment service after credentials are added to `.env`.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script>
+    const orderId = new URLSearchParams(location.search).get('order');
+    let currentOrder = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await VibePass.requireAuth();
+      await loadOrder();
+    });
+    document.getElementById('verifyPaymentBtn').addEventListener('click', verifyPayment);
+
+    async function loadOrder() {
+      if (!orderId) {
+        document.getElementById('orderSummary').innerHTML = '<div class="empty-state">No order selected.</div>';
+        return;
+      }
+      try {
+        const data = await VibePass.request(`/orders/${orderId}`);
+        currentOrder = data.order;
+        renderOrder(data.order, data.tickets || []);
+      } catch (error) {
+        VibePass.toast(error.message, 'error');
+      }
+    }
+
+    function renderOrder(order, tickets) {
+      document.getElementById('paymentStatus').innerHTML = `<span class="status-chip ${order.payment_status}">${order.payment_status}</span>`;
+      document.getElementById('orderSummary').innerHTML = `
+        <article class="dash-row">
+          <div>
+            <strong>${order.event_title}</strong>
+            <span>${new Date(order.start_date).toLocaleString('en-LK')} - ${order.venue}</span>
+          </div>
+          <strong>${VibePass.money(order.total)}</strong>
+        </article>
+        <article class="dash-row"><span>Platform fee</span><strong>${VibePass.money(order.platform_fee)}</strong></article>
+        <article class="dash-row"><span>Gateway fee</span><strong>${VibePass.money(order.gateway_fee)}</strong></article>
+      `;
+      document.getElementById('ticketList').innerHTML = tickets.length
+        ? tickets.map((ticket) => `<article class="dash-row"><div><strong>${ticket.ticket_category || 'Ticket'}</strong><span>${ticket.qr_code}</span></div><span class="status-chip ${ticket.scan_status}">${ticket.scan_status}</span></article>`).join('')
+        : '<div class="empty-state">QR tickets are generated after payment verification.</div>';
+      document.getElementById('verifyPaymentBtn').style.display = order.payment_status === 'paid' ? 'none' : 'block';
+    }
+
+    async function verifyPayment() {
+      const button = document.getElementById('verifyPaymentBtn');
+      VibePass.setLoading(button, true, 'Verifying...');
+      try {
+        const data = await VibePass.request('/payments/verify', {
+          method: 'POST',
+          body: {
+            order_id: currentOrder.id,
+            status: 'paid',
+            payment_reference: `sandbox-${Date.now()}`
+          }
+        });
+        renderOrder(data.order, data.tickets || []);
+        VibePass.toast('Payment verified. QR tickets generated.', 'success');
+      } catch (error) {
+        VibePass.toast(error.message, 'error');
+      } finally {
+        VibePass.setLoading(button, false);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "VibePass.lk",
+  "short_name": "VibePass",
+  "description": "Sri Lankan event ticketing, invitations, and organizer management website.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0A090F",
+  "theme_color": "#7B5CF0",
+  "icons": [
+    {
+      "src": "assets/images/Logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/Logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

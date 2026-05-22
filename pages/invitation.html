@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitation - VibePass.lk</title>
+  <meta name="description" content="Open a VibePass.lk digital invitation, view event details and RSVP online." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/invitation" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Invitation - VibePass.lk" />
+  <meta property="og:description" content="Open a VibePass.lk digital invitation, view event details and RSVP online." />
+  <meta property="og:url" content="https://vibepass.lk/invitation" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Invitation - VibePass.lk" />
+  <meta name="twitter:description" content="Open a VibePass.lk digital invitation, view event details and RSVP online." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="icon" href="../assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card" style="max-width:560px;text-align:center;">
+      <div class="section-label">You are invited</div>
+      <h1 class="auth-title" id="inviteTitle" style="font-size:34px;">Loading invitation...</h1>
+      <p class="auth-sub" id="inviteMeta">Date and venue</p>
+      <p id="inviteMessage" style="color:var(--text-2);margin-bottom:24px;">Please wait.</p>
+
+      <form id="rsvpForm" style="text-align:left;">
+        <div class="form-group">
+          <label class="form-label" for="guest_name">Your name</label>
+          <input class="form-input" id="guest_name" name="guest_name" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="guest_email">Email</label>
+          <input class="form-input" id="guest_email" name="guest_email" type="email" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="status">RSVP</label>
+          <select class="form-input" id="status" name="status">
+            <option value="attending">Attending</option>
+            <option value="maybe">Maybe</option>
+            <option value="not_attending">Not attending</option>
+          </select>
+        </div>
+        <button class="form-submit" type="submit">Send RSVP</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script>
+    const shareLink = new URLSearchParams(location.search).get('i');
+    document.addEventListener('DOMContentLoaded', loadInvitation);
+    document.getElementById('rsvpForm').addEventListener('submit', submitRsvp);
+
+    async function loadInvitation() {
+      if (!shareLink) {
+        document.getElementById('inviteTitle').textContent = 'Invitation link missing';
+        return;
+      }
+      try {
+        const data = await VibePass.request(`/invitations/${shareLink}`);
+        const invite = data.invitation;
+        document.getElementById('inviteTitle').textContent = invite.title;
+        document.getElementById('inviteMeta').textContent = `${invite.event_date ? new Date(invite.event_date).toLocaleString('en-LK') : 'Date pending'} - ${invite.venue || 'Venue pending'}`;
+        document.getElementById('inviteMessage').textContent = invite.message || 'RSVP and see you there.';
+      } catch (error) {
+        VibePass.toast(error.message, 'error');
+      }
+    }
+
+    async function submitRsvp(event) {
+      event.preventDefault();
+      const button = event.target.querySelector('[type="submit"]');
+      VibePass.setLoading(button, true, 'Sending...');
+      try {
+        await VibePass.request(`/invitations/${shareLink}/rsvp`, {
+          method: 'POST',
+          body: {
+            guest_name: event.target.guest_name.value,
+            guest_email: event.target.guest_email.value,
+            status: event.target.status.value
+          }
+        });
+        VibePass.toast('RSVP saved', 'success');
+        event.target.reset();
+      } catch (error) {
+        VibePass.toast(error.message, 'error');
+      } finally {
+        VibePass.setLoading(button, false);
+      }
+    }
+  </script>
+</body>
+</html>

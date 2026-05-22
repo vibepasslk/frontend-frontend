@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Events — VibePass.lk</title>
+  <meta name="description" content="Browse concerts, theatre, comedy, dance and cultural events across Sri Lanka with secure VibePass.lk ticket booking." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/events" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Browse Events — VibePass.lk" />
+  <meta property="og:description" content="Browse concerts, theatre, comedy, dance and cultural events across Sri Lanka with secure VibePass.lk ticket booking." />
+  <meta property="og:url" content="https://vibepass.lk/events" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Browse Events — VibePass.lk" />
+  <meta name="twitter:description" content="Browse concerts, theatre, comedy, dance and cultural events across Sri Lanka with secure VibePass.lk ticket booking." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="icon" href="../assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body>
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/Logo-192.png" alt="VibePass" class="logo-img" />
+        <span class="logo-text">VibePass<span class="logo-lk">.lk</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="events.html" class="nav-link" style="color:var(--primary-light)">Events</a>
+        <a href="invitations.html" class="nav-link">Invitations</a>
+        <a href="organizers.html" class="nav-link">For Organizers</a>
+      </div>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-ghost">Sign in</a>
+        <a href="register.html" class="btn btn-primary">Get started</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><i class="ti ti-menu-2"></i></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="events.html" class="mob-link">Events</a>
+      <a href="invitations.html" class="mob-link">Invitations</a>
+      <a href="organizers.html" class="mob-link">For Organizers</a>
+      <a href="login.html" class="mob-link">Sign in</a>
+      <a href="register.html" class="mob-link mob-cta">Get started →</a>
+    </div>
+  </nav>
+
+  <section class="page-hero" style="padding:120px 0 40px;">
+    <div class="container">
+      <div class="section-label">All shows</div>
+      <h1 style="font-size:clamp(28px,4vw,44px);">Browse upcoming events</h1>
+    </div>
+  </section>
+
+  <section class="events-page">
+    <div class="container">
+      <div class="filters-bar">
+        <div class="search-box">
+          <i class="ti ti-search"></i>
+          <input class="form-input" type="text" id="searchInput" placeholder="Search events, venues…" />
+        </div>
+        <div class="cat-filters" id="catFilters" style="margin-bottom:0;">
+          <button class="cat-btn active" data-cat="all">All</button>
+          <button class="cat-btn" data-cat="music">🎵 Music</button>
+          <button class="cat-btn" data-cat="theatre">🎭 Theatre</button>
+          <button class="cat-btn" data-cat="comedy">😂 Comedy</button>
+          <button class="cat-btn" data-cat="dance">💃 Dance</button>
+          <button class="cat-btn" data-cat="art">🎨 Art</button>
+        </div>
+      </div>
+      <div class="events-grid" id="eventsGrid"></div>
+    </div>
+  </section>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initNavbar();
+      renderEvents('all');
+      initCategoryFilters();
+
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase();
+        document.querySelectorAll('.event-card').forEach(card => {
+          const name = card.querySelector('.ec-name').textContent.toLowerCase();
+          const venue = card.querySelector('.ec-venue').textContent.toLowerCase();
+          card.style.display = (name.includes(q) || venue.includes(q)) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

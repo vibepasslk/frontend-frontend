@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super admin dashboard - VibePass.lk</title>
+  <meta name="description" content="Access the VibePass.lk super admin dashboard for platform operations." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/admin-dashboard" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Super admin dashboard - VibePass.lk" />
+  <meta property="og:description" content="Access the VibePass.lk super admin dashboard for platform operations." />
+  <meta property="og:url" content="https://vibepass.lk/admin-dashboard" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Super admin dashboard - VibePass.lk" />
+  <meta name="twitter:description" content="Access the VibePass.lk super admin dashboard for platform operations." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="icon" href="../assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body data-dashboard="admin">
+  <nav class="navbar scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo"><img src="../assets/images/Logo-192.png" alt="VibePass" class="logo-img" /><span class="logo-text">VibePass<span class="logo-lk">.lk</span></span></a>
+      <div class="nav-actions" data-keep-auth="true">
+        <a href="scanner.html" class="btn btn-ghost">Scanner</a>
+        <button class="btn btn-primary" type="button" data-logout>Sign out</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="app-shell">
+    <div class="app-layout">
+      <aside class="app-sidebar">
+        <div class="side-title">Super Admin</div>
+        <nav class="side-nav">
+          <a class="active" href="#overview"><i class="ti ti-chart-bar"></i> Analytics</a>
+          <a href="#events"><i class="ti ti-calendar-check"></i> Event reviews</a>
+          <a href="#organizers"><i class="ti ti-users"></i> Organizers</a>
+          <a href="#withdrawals"><i class="ti ti-cash-banknote"></i> Withdrawals</a>
+          <a href="#settings"><i class="ti ti-settings"></i> Settings</a>
+        </nav>
+      </aside>
+
+      <section class="app-main" id="overview">
+        <div class="dash-hero">
+          <div>
+            <div class="section-label">Platform control</div>
+            <h1>Welcome, <span id="dashboardName">Super Admin</span></h1>
+            <p>Review organizers, approve events and withdrawals, monitor fraud signals, and tune platform finance.</p>
+          </div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-tile"><span>Total revenue</span><strong id="adminRevenue">LKR 0</strong></div>
+          <div class="stat-tile"><span>Commission</span><strong id="adminCommission">LKR 0</strong></div>
+          <div class="stat-tile"><span>Tickets sold</span><strong id="adminTickets">0</strong></div>
+          <div class="stat-tile"><span>Active events</span><strong id="adminEvents">0</strong></div>
+          <div class="stat-tile"><span>Pending reviews</span><strong id="adminReviews">0</strong></div>
+          <div class="stat-tile"><span>Pending withdrawals</span><strong id="adminWithdrawals">0</strong></div>
+        </div>
+
+        <div class="dash-grid">
+          <section class="dash-panel" id="events">
+            <div class="panel-head"><h2>Event review queue</h2></div>
+            <div class="dash-list" id="adminEventsList"></div>
+          </section>
+          <section class="dash-panel" id="organizers">
+            <div class="panel-head"><h2>Organizer reviews</h2></div>
+            <div class="dash-list" id="adminOrganizersList"></div>
+          </section>
+          <section class="dash-panel" id="withdrawals">
+            <div class="panel-head"><h2>Withdrawal requests</h2></div>
+            <div class="dash-list" id="adminWithdrawalsList"></div>
+          </section>
+          <section class="dash-panel" id="settings">
+            <div class="panel-head"><h2>Finance settings</h2></div>
+            <form id="settingsForm">
+              <div class="form-group">
+                <label class="form-label" for="platformFee">Platform fee percent</label>
+                <input class="form-input" id="platformFee" name="platformFee" type="number" min="0" step="0.1" value="8" />
+              </div>
+              <button class="form-submit" type="submit">Save platform fee</button>
+            </form>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+  <script>
+    document.getElementById('settingsForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = event.target.querySelector('[type="submit"]');
+      VibePass.setLoading(button, true, 'Saving...');
+      try {
+        await VibePass.request('/admin/settings', {
+          method: 'POST',
+          body: {
+            key: 'platform_fee_percent',
+            value: event.target.platformFee.value,
+            type: 'number'
+          }
+        });
+        VibePass.toast('Setting saved', 'success');
+      } catch (error) {
+        VibePass.toast(error.message, 'error');
+      } finally {
+        VibePass.setLoading(button, false);
+      }
+    });
+  </script>
+</body>
+</html>

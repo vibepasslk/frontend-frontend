@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organizer dashboard - VibePass.lk</title>
+  <meta name="description" content="Manage VibePass.lk events, tickets, revenue, attendees and withdrawals." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/organizer-dashboard" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Organizer dashboard - VibePass.lk" />
+  <meta property="og:description" content="Manage VibePass.lk events, tickets, revenue, attendees and withdrawals." />
+  <meta property="og:url" content="https://vibepass.lk/organizer-dashboard" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Organizer dashboard - VibePass.lk" />
+  <meta name="twitter:description" content="Manage VibePass.lk events, tickets, revenue, attendees and withdrawals." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="icon" href="../assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body data-dashboard="organizer">
+  <nav class="navbar scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo"><img src="../assets/images/Logo-192.png" alt="VibePass" class="logo-img" /><span class="logo-text">VibePass<span class="logo-lk">.lk</span></span></a>
+      <div class="nav-actions" data-keep-auth="true">
+        <a href="scanner.html" class="btn btn-ghost">QR scanner</a>
+        <button class="btn btn-primary" type="button" data-logout>Sign out</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="app-shell">
+    <div class="app-layout">
+      <aside class="app-sidebar">
+        <div class="side-title">Organizer</div>
+        <nav class="side-nav">
+          <a class="active" href="#overview"><i class="ti ti-layout-dashboard"></i> Dashboard</a>
+          <a href="#events"><i class="ti ti-calendar-plus"></i> Events</a>
+          <a href="#withdrawals"><i class="ti ti-cash"></i> Withdrawals</a>
+          <a href="#account"><i class="ti ti-user-check"></i> My account</a>
+          <a href="scanner.html"><i class="ti ti-qrcode"></i> Accessibility</a>
+        </nav>
+      </aside>
+
+      <section class="app-main" id="overview">
+        <div class="dash-hero">
+          <div>
+            <div class="section-label">Organizer dashboard</div>
+            <h1>Hello, <span id="dashboardName">Organizer</span></h1>
+            <p>Track revenue, create events, manage ticket categories, and request withdrawals.</p>
+          </div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-tile"><span>Gross revenue</span><strong id="orgRevenue">LKR 0</strong></div>
+          <div class="stat-tile"><span>Withdrawal balance</span><strong id="orgBalance">LKR 0</strong></div>
+          <div class="stat-tile"><span>Events</span><strong id="orgEvents">0</strong></div>
+          <div class="stat-tile"><span>Tickets sold</span><strong id="orgTickets">0</strong></div>
+        </div>
+
+        <div class="dash-grid">
+          <section class="dash-panel" id="events">
+            <div class="panel-head"><h2>My events</h2><span class="status-chip under_review">Review flow</span></div>
+            <div class="dash-list" id="organizerEventsList"></div>
+          </section>
+
+          <section class="dash-panel">
+            <div class="panel-head"><h2>Recent orders</h2></div>
+            <div class="dash-list" id="ordersList"></div>
+          </section>
+        </div>
+
+        <section class="dash-panel" style="margin-top:18px;">
+          <div class="panel-head"><h2>Create event</h2><span class="status-chip draft">Draft to review</span></div>
+          <form id="createEventForm" class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="title">Event name</label>
+              <input class="form-input" id="title" name="title" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="category">Category</label>
+              <select class="form-input" id="category" name="category">
+                <option value="music">Music</option>
+                <option value="theatre">Theatre</option>
+                <option value="comedy">Comedy</option>
+                <option value="dance">Dance</option>
+                <option value="art">Art and culture</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="venue">Venue</label>
+              <input class="form-input" id="venue" name="venue" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="start_date">Start date and time</label>
+              <input class="form-input" id="start_date" name="start_date" type="datetime-local" required />
+            </div>
+            <div class="form-group full-span">
+              <label class="form-label" for="description">Description</label>
+              <textarea class="form-input" id="description" name="description" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ticket_category">Ticket category</label>
+              <input class="form-input" id="ticket_category" name="ticket_category" value="General" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ticket_price">Ticket price</label>
+              <input class="form-input" id="ticket_price" name="ticket_price" type="number" min="0" value="1500" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ticket_quantity">Ticket limit</label>
+              <input class="form-input" id="ticket_quantity" name="ticket_quantity" type="number" min="1" value="100" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="visibility">Visibility</label>
+              <select class="form-input" id="visibility" name="visibility">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+              </select>
+            </div>
+            <div class="form-group full-span">
+              <label class="form-label" for="rules">Rules and regulations</label>
+              <textarea class="form-input" id="rules" name="rules" rows="3"></textarea>
+            </div>
+            <div class="full-span">
+              <button class="form-submit" type="submit">Create and submit for review</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="dash-panel" id="withdrawals" style="margin-top:18px;">
+          <div class="panel-head"><h2>Request withdrawal</h2></div>
+          <form id="withdrawalForm" class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="amount">Amount</label>
+              <input class="form-input" id="amount" name="amount" type="number" min="1" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="organizer_note">Note</label>
+              <input class="form-input" id="organizer_note" name="organizer_note" />
+            </div>
+            <div class="full-span"><button class="form-submit" type="submit">Send withdrawal request</button></div>
+          </form>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+  <script>
+    document.getElementById('createEventForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.target;
+      const button = form.querySelector('[type="submit"]');
+      VibePass.setLoading(button, true, 'Creating...');
+      try {
+        const data = await VibePass.request('/events', {
+          method: 'POST',
+          body: {
+            title: form.title.value,
+            category: form.category.value,
+            venue: form.venue.value,
+            start_date: form.start_date.value,
+            description: form.description.value,
+            visibility: form.visibility.value,
+            rules: form.rules.value,
+            platform_terms_accepted: true,
+            tickets: [{
+              category: form.ticket_category.value,
+              price: Number(form.ticket_price.value),
+              quantity_total: Number(form.ticket_quantity.value),
+              seats_per_ticket: 1
+            }]
+          }
+        });
+        await VibePass.request(`/events/${data.event.id}/submit-review`, { method: 'POST' });
+        VibePass.toast('Event submitted for review', 'success');
+        form.reset();
+        loadOrganizerDashboard();
+      } catch (error) {
+        VibePass.toast(error.message, 'error');
+      } finally {
+        VibePass.setLoading(button, false);
+      }
+    });
+
+    document.getElementById('withdrawalForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = event.target.querySelector('[type="submit"]');
+      VibePass.setLoading(button, true, 'Sending...');
+      try {
+        await VibePass.request('/withdrawals', {
+          method: 'POST',
+          body: {
+            amount: Number(event.target.amount.value),
+            organizer_note: event.target.organizer_note.value
+          }
+        });
+        VibePass.toast('Withdrawal request sent', 'success');
+        event.target.reset();
+      } catch (error) {
+        VibePass.toast(error.message, 'error');
+      } finally {
+        VibePass.setLoading(button, false);
+      }
+    });
+  </script>
+</body>
+</html>

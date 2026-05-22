@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event details - VibePass.lk</title>
+  <meta name="description" content="View event details, ticket options, venue information and checkout links on VibePass.lk." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/event-detail" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Event details - VibePass.lk" />
+  <meta property="og:description" content="View event details, ticket options, venue information and checkout links on VibePass.lk." />
+  <meta property="og:url" content="https://vibepass.lk/event-detail" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Event details - VibePass.lk" />
+  <meta name="twitter:description" content="View event details, ticket options, venue information and checkout links on VibePass.lk." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="icon" href="../assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body>
+  <nav class="navbar scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/Logo-192.png" alt="VibePass" class="logo-img" />
+        <span class="logo-text">VibePass<span class="logo-lk">.lk</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="invitations.html" class="nav-link">Invitations</a>
+        <a href="organizers.html" class="nav-link">For Organizers</a>
+      </div>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-ghost">Sign in</a>
+        <a href="register.html" class="btn btn-primary">Get started</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="app-shell">
+    <section class="container" style="padding:32px 24px 72px;">
+      <div class="detail-layout">
+        <div>
+          <div class="event-cover">
+            <div>
+              <div class="section-label" id="eventCategory">Event</div>
+              <h1 id="eventTitle">Loading event...</h1>
+            </div>
+          </div>
+
+          <div class="detail-panel">
+            <div class="meta-grid">
+              <div class="meta-item"><i class="ti ti-calendar"></i><span id="eventDate">Date pending</span></div>
+              <div class="meta-item"><i class="ti ti-map-pin"></i><span id="eventVenue">Venue pending</span></div>
+              <div class="meta-item"><i class="ti ti-user-star"></i><span id="eventOrganizer">Organizer</span></div>
+            </div>
+            <h2 style="font-size:22px;margin-bottom:10px;">About this event</h2>
+            <p id="eventDescription" style="color:var(--text-2);">Loading event description...</p>
+            <h2 style="font-size:22px;margin:26px 0 10px;">Rules and terms</h2>
+            <p id="eventRules" style="color:var(--text-2);">Organizer rules and VibePass ticketing terms apply.</p>
+          </div>
+        </div>
+
+        <aside class="tool-panel">
+          <div class="panel-head">
+            <h2>Select tickets</h2>
+            <span class="status-chip published">Secure QR</span>
+          </div>
+          <form id="ticketForm">
+            <div id="ticketOptions"></div>
+            <div class="form-group">
+              <label class="form-label" for="buyerName">Full name</label>
+              <input class="form-input" id="buyerName" name="buyerName" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="buyerPhone">Phone</label>
+              <input class="form-input" id="buyerPhone" name="buyerPhone" placeholder="+94" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="buyerNic">NIC / Passport / License</label>
+              <input class="form-input" id="buyerNic" name="buyerNic" />
+            </div>
+            <button class="form-submit" type="submit">Continue to checkout</button>
+          </form>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get('id') || '1';
+    let loadedEvent = null;
+    let loadedTickets = [];
+
+    document.addEventListener('DOMContentLoaded', loadEvent);
+    document.getElementById('ticketForm').addEventListener('submit', createOrder);
+
+    async function loadEvent() {
+      try {
+        const data = await VibePass.request(`/events/${eventId}`);
+        loadedEvent = data.event;
+        loadedTickets = data.tickets || [];
+      } catch (_error) {
+        loadedEvent = {
+          id: 1,
+          title: 'Colombo Jazz Night',
+          category: 'music',
+          venue: 'Lionel Wendt Theatre',
+          start_date: '2026-06-12T19:00:00',
+          organizer_name: 'VibePass Demo Organizer',
+          description: 'A premium evening of local jazz, reserved seating, and instant QR tickets.',
+          rules: 'Bring a valid ID. Tickets are non-refundable unless the event is cancelled.'
+        };
+        loadedTickets = [
+          { id: 1, category: 'General', price: 1500, quantity_available: 80 },
+          { id: 2, category: 'VIP', price: 3500, quantity_available: 20 }
+        ];
+      }
+
+      renderEvent();
+    }
+
+    function renderEvent() {
+      document.getElementById('eventTitle').textContent = loadedEvent.title;
+      document.getElementById('eventCategory').textContent = loadedEvent.category || 'Event';
+      document.getElementById('eventDate').textContent = loadedEvent.start_date
+        ? new Date(loadedEvent.start_date).toLocaleString('en-LK', { dateStyle: 'medium', timeStyle: 'short' })
+        : 'Date pending';
+      document.getElementById('eventVenue').textContent = loadedEvent.venue || 'Venue pending';
+      document.getElementById('eventOrganizer').textContent = loadedEvent.organization_name || loadedEvent.organizer_name || 'Organizer';
+      document.getElementById('eventDescription').textContent = loadedEvent.description || 'Event details will be updated by the organizer.';
+      document.getElementById('eventRules').textContent = loadedEvent.rules || 'Organizer rules and VibePass refund policy apply.';
+
+      document.getElementById('ticketOptions').innerHTML = loadedTickets.map((ticket, index) => `
+        <label class="ticket-option">
+          <span>
+            <strong>${ticket.category}</strong>
+            <span style="color:var(--text-3);font-size:13px;">${Number(ticket.quantity_available ?? ticket.quantity_total ?? 0)} available</span>
+            <span style="display:block;color:var(--primary-light);font-family:var(--font-head);">${VibePass.money(ticket.price)}</span>
+          </span>
+          <input class="form-input" type="number" min="0" max="10" value="${index === 0 ? 1 : 0}" data-ticket-id="${ticket.id}" />
+        </label>
+      `).join('');
+    }
+
+    async function createOrder(event) {
+      event.preventDefault();
+      const user = VibePass.getUser();
+      if (!user) {
+        VibePass.toast('Sign in before checkout', 'error');
+        window.location.href = `login.html?next=${encodeURIComponent(location.href)}`;
+        return;
+      }
+
+      const items = Array.from(document.querySelectorAll('[data-ticket-id]'))
+        .map((input) => ({ ticket_type_id: Number(input.dataset.ticketId), quantity: Number(input.value || 0) }))
+        .filter((item) => item.quantity > 0);
+
+      if (!items.length) {
+        VibePass.toast('Select at least one ticket', 'error');
+        return;
+      }
+
+      const button = event.target.querySelector('[type="submit"]');
+      VibePass.setLoading(button, true, 'Creating order...');
+      try {
+        const data = await VibePass.request('/orders', {
+          method: 'POST',
+          body: {
+            event_id: loadedEvent.id,
+            items,
+            buyer_details: {
+              name: event.target.buyerName.value,
+              phone: event.target.buyerPhone.value,
+              nic: event.target.buyerNic.value
+            }
+          }
+        });
+        window.location.href = `checkout.html?order=${data.order.id}`;
+      } catch (error) {
+        VibePass.toast(error.message, 'error');
+      } finally {
+        VibePass.setLoading(button, false);
+      }
+    }
+  </script>
+</body>
+</html>

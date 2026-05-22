@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in — VibePass.lk</title>
+  <meta name="description" content="VibePass.lk event ticketing, organizer management and digital invitation tools for Sri Lanka." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/pages/login2" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sign in — VibePass.lk" />
+  <meta property="og:description" content="VibePass.lk event ticketing, organizer management and digital invitation tools for Sri Lanka." />
+  <meta property="og:url" content="https://vibepass.lk/pages/login2" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sign in — VibePass.lk" />
+  <meta name="twitter:description" content="VibePass.lk event ticketing, organizer management and digital invitation tools for Sri Lanka." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="icon" href="../assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <img src="../assets/images/Logo-192.png" alt="VibePass" />
+        <a href="../index.html" class="logo-text" style="display:block;font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--text);">VibePass<span style="color:var(--primary-light)">.lk</span></a>
+      </div>
+      <h1 class="auth-title">Welcome back</h1>
+      <p class="auth-sub">Sign in to your VibePass account</p>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="email">Email address</label>
+          <input class="form-input" type="email" id="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">
+            Password
+            <a href="forgot-password.html" style="float:right;font-size:13px;color:var(--primary-light);">Forgot?</a>
+          </label>
+          <input class="form-input" type="password" id="password" placeholder="••••••••" required />
+        </div>
+        <button class="form-submit" type="submit">Sign in</button>
+      </form>
+
+      <div class="form-divider">or continue with</div>
+      <button class="btn btn-ghost" style="width:100%;justify-content:center;gap:10px;padding:11px;" onclick="alert('Google sign-in coming soon!')">
+        <i class="ti ti-brand-google" style="font-size:18px;"></i> Continue with Google
+      </button>
+
+      <div class="auth-alt">
+        Don't have an account? <a href="register.html">Sign up free</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Signing in…';
+      btn.disabled = true;
+      // Simulate — replace with real auth
+      setTimeout(() => {
+        alert('Login feature coming soon! The frontend is ready for backend integration.');
+        btn.textContent = 'Sign in';
+        btn.disabled = false;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

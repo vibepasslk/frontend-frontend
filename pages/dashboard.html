@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer dashboard - VibePass.lk</title>
+  <meta name="description" content="Manage your VibePass.lk tickets, invitations and account activity." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/dashboard" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Customer dashboard - VibePass.lk" />
+  <meta property="og:description" content="Manage your VibePass.lk tickets, invitations and account activity." />
+  <meta property="og:url" content="https://vibepass.lk/dashboard" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Customer dashboard - VibePass.lk" />
+  <meta name="twitter:description" content="Manage your VibePass.lk tickets, invitations and account activity." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="icon" href="../assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body data-dashboard="customer">
+  <nav class="navbar scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo"><img src="../assets/images/Logo-192.png" alt="VibePass" class="logo-img" /><span class="logo-text">VibePass<span class="logo-lk">.lk</span></span></a>
+      <div class="nav-actions" data-keep-auth="true">
+        <button class="btn btn-primary" type="button" data-logout>Sign out</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="app-shell">
+    <div class="app-layout">
+      <aside class="app-sidebar">
+        <div class="side-title">Customer</div>
+        <nav class="side-nav">
+          <a class="active" href="#tickets"><i class="ti ti-ticket"></i> My tickets</a>
+          <a href="#invitations"><i class="ti ti-mail"></i> Invitations</a>
+          <a href="events.html"><i class="ti ti-calendar-search"></i> Browse events</a>
+          <a href="invitation-builder.html"><i class="ti ti-edit"></i> Create invitation</a>
+        </nav>
+      </aside>
+
+      <section class="app-main">
+        <div class="dash-hero">
+          <div>
+            <div class="section-label">Dashboard</div>
+            <h1>Welcome, <span id="dashboardName">member</span></h1>
+            <p>Manage tickets, QR access, invitations, notifications, and upcoming events.</p>
+          </div>
+          <a class="btn btn-primary" href="events.html"><i class="ti ti-ticket"></i> Buy tickets</a>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-tile"><span>Ticket orders</span><strong id="ticketCount">0</strong></div>
+          <div class="stat-tile"><span>Invitations</span><strong id="inviteCount">0</strong></div>
+          <div class="stat-tile"><span>Notifications</span><strong id="noticeCount">0</strong></div>
+          <div class="stat-tile"><span>Free invite links</span><strong>3</strong></div>
+        </div>
+
+        <div class="dash-grid">
+          <section class="dash-panel" id="tickets">
+            <div class="panel-head"><h2>My tickets</h2><a href="events.html" class="btn btn-ghost">Browse</a></div>
+            <div class="dash-list" id="ordersList"></div>
+          </section>
+          <section class="dash-panel" id="invitations">
+            <div class="panel-head"><h2>Invitations</h2><a href="invitation-builder.html" class="btn btn-ghost">Create</a></div>
+            <div class="dash-list" id="invitationsList"></div>
+          </section>
+          <section class="dash-panel">
+            <div class="panel-head"><h2>Notifications</h2></div>
+            <div class="dash-list" id="notificationsList"></div>
+          </section>
+          <section class="dash-panel">
+            <div class="panel-head"><h2>Refund requests</h2></div>
+            <div class="empty-state">Refund requests appear here after a cancelled event, duplicate payment, or platform issue.</div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

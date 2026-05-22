@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create account - VibePass.lk</title>
+  <meta name="description" content="Create a VibePass.lk account to buy tickets, create invitations or sell event tickets." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/register" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Create account - VibePass.lk" />
+  <meta property="og:description" content="Create a VibePass.lk account to buy tickets, create invitations or sell event tickets." />
+  <meta property="og:url" content="https://vibepass.lk/register" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Create account - VibePass.lk" />
+  <meta name="twitter:description" content="Create a VibePass.lk account to buy tickets, create invitations or sell event tickets." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="icon" href="../assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card" style="max-width:480px;">
+      <div class="auth-logo">
+        <img src="../assets/images/Logo-192.png" alt="VibePass" />
+        <a href="../index.html" class="logo-text" style="display:block;font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--text);">
+          VibePass<span style="color:var(--primary-light)">.lk</span>
+        </a>
+      </div>
+
+      <h1 class="auth-title">Create your account</h1>
+      <p class="auth-sub">Join as a customer, invitation creator, or organizer.</p>
+
+      <p style="font-size:13px;color:var(--text-3);margin-bottom:10px;">I am joining as a...</p>
+      <div class="role-selector" id="roleSelector">
+        <button class="role-btn selected" type="button" data-role="customer" onclick="selectRole('customer')">
+          <i class="ti ti-ticket"></i>
+          Ticket buyer / Guest
+        </button>
+        <button class="role-btn" type="button" data-role="organizer" onclick="selectRole('organizer')">
+          <i class="ti ti-microphone-2"></i>
+          Event organizer
+        </button>
+      </div>
+
+      <form id="registerForm">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group">
+            <label class="form-label" for="fname">First name</label>
+            <input class="form-input" type="text" id="fname" name="fname" placeholder="Kasun" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lname">Last name</label>
+            <input class="form-input" type="text" id="lname" name="lname" placeholder="Silva" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email address</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone number (Sri Lanka)</label>
+          <input class="form-input" type="tel" id="phone" name="phone" placeholder="+94 77 123 4567" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input class="form-input" type="password" id="password" name="password" placeholder="Min. 8 characters" minlength="8" required />
+        </div>
+
+        <div id="orgExtra" style="display:none;">
+          <div class="form-group">
+            <label class="form-label" for="orgName">Organization / event company name</label>
+            <input class="form-input" type="text" id="orgName" name="orgName" placeholder="Colombo Events Co." />
+          </div>
+        </div>
+
+        <p style="font-size:12px;color:var(--text-3);margin-bottom:14px;line-height:1.6;">
+          By creating an account, you agree to our
+          <a href="terms.html" style="color:var(--primary-light);">Terms of Service</a>
+          and
+          <a href="privacy.html" style="color:var(--primary-light);">Privacy Policy</a>.
+        </p>
+
+        <button class="form-submit" type="submit">Create account</button>
+      </form>
+
+      <div class="auth-alt">
+        Already have an account?
+        <a href="login.html">Sign in</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function selectRole(role) {
+      document.querySelectorAll('.role-btn').forEach((button) => {
+        button.classList.toggle('selected', button.dataset.role === role);
+      });
+      document.getElementById('orgExtra').style.display = role === 'organizer' ? 'block' : 'none';
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('role') === 'organizer') selectRole('organizer');
+  </script>
+  <script src="../assets/js/api.js"></script>
+</body>
+</html>

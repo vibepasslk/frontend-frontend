@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VibePass.lk — Book Local Shows. Create Invitations.</title>
+  <meta name="description" content="Sri Lanka's platform to discover and book tickets for local shows, concerts, theatre, comedy & more. Create stunning digital invitations for any occasion." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#7B5CF0" />
+  <link rel="canonical" href="https://vibepass.lk/" />
+  <meta property="og:site_name" content="VibePass.lk" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="VibePass.lk - Book Local Shows. Create Invitations." />
+  <meta property="og:description" content="Discover and book tickets for Sri Lankan events, concerts, theatre, comedy and more. Create digital invitations and manage RSVPs in one place." />
+  <meta property="og:url" content="https://vibepass.lk/" />
+  <meta property="og:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="VibePass.lk - Book Local Shows. Create Invitations." />
+  <meta name="twitter:description" content="Sri Lanka's event ticketing and digital invitation platform." />
+  <meta name="twitter:image" content="https://vibepass.lk/assets/images/og-image.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/images/Logo-192.png" type="image/png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/images/Logo-192.png" alt="VibePass" class="logo-img" />
+        <span class="logo-text">VibePass<span class="logo-lk">.lk</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#events" class="nav-link">Events</a>
+        <a href="#invitations" class="nav-link">Invitations</a>
+        <a href="pages/organizers.html" class="nav-link">For Organizers</a>
+        <a href="pages/about.html" class="nav-link">About</a>
+      </div>
+      <div class="nav-actions">
+        <a href="pages/login.html" class="btn btn-ghost">Sign in</a>
+        <a href="pages/register.html" class="btn btn-primary">Get started</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <i class="ti ti-menu-2"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#events" class="mob-link">Events</a>
+      <a href="#invitations" class="mob-link">Invitations</a>
+      <a href="pages/organizers.html" class="mob-link">For Organizers</a>
+      <a href="pages/about.html" class="mob-link">About</a>
+      <a href="pages/login.html" class="mob-link">Sign in</a>
+      <a href="pages/register.html" class="mob-link mob-cta">Get started →</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-lines"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="ti ti-sparkles"></i> Sri Lanka's local show platform
+      </div>
+      <h1 class="hero-title">
+        Feel the <span class="highlight">Vibe.</span><br />
+        Book your <span class="highlight">Seat.</span><br />
+        Invite your <span class="highlight">People.</span>
+      </h1>
+      <p class="hero-sub">
+        Discover concerts, theatre, comedy, dance & more across Sri Lanka.
+        Book tickets instantly and create stunning digital invitations — all in one place.
+      </p>
+      <div class="hero-actions">
+        <a href="#events" class="btn btn-primary btn-lg">
+          <i class="ti ti-ticket"></i> Browse events
+        </a>
+        <a href="#invitations" class="btn btn-outline btn-lg">
+          <i class="ti ti-mail"></i> Create invitation
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat">
+          <span class="hstat-num" data-count="120">0</span><span>+</span>
+          <span class="hstat-label">Live shows</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-num" data-count="45">0</span><span>+</span>
+          <span class="hstat-label">Venues</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-num" data-count="8000">0</span><span>+</span>
+          <span class="hstat-label">Tickets sold</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="ticket-card floating">
+        <div class="tc-header">
+          <span class="tc-tag">🎵 Music</span>
+          <span class="tc-seats">3 seats left</span>
+        </div>
+        <div class="tc-title">Colombo Jazz Night</div>
+        <div class="tc-venue"><i class="ti ti-map-pin"></i> Lionel Wendt · Jun 12</div>
+        <div class="tc-footer">
+          <span class="tc-price">LKR 1,500</span>
+          <span class="tc-book">Book now →</span>
+        </div>
+        <div class="tc-tear"></div>
+      </div>
+      <div class="invite-preview floating-slow">
+        <div class="ip-label"><i class="ti ti-sparkles"></i> Digital invite</div>
+        <div class="ip-card">
+          <div class="ip-flowers">🌺</div>
+          <div class="ip-title">You're invited!</div>
+          <div class="ip-event">Dilshan & Nimal's Wedding</div>
+          <div class="ip-date">July 20 · Hilton Colombo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ HOW IT WORKS ═══════════════════════════ -->
+  <section class="how-works">
+    <div class="container">
+      <div class="section-label">How VibePass works</div>
+      <h2 class="section-title">Three parties. One platform.</h2>
+      <div class="parties-grid">
+        <div class="party-card" data-role="organizer">
+          <div class="party-icon"><i class="ti ti-microphone-2"></i></div>
+          <div class="party-tag">Event Organizers</div>
+          <h3>List your show</h3>
+          <p>Register as an organizer, create your event, set seat categories and pricing. We handle ticketing, payments, and reporting.</p>
+          <ul class="party-perks">
+            <li><i class="ti ti-check"></i> Easy event creation</li>
+            <li><i class="ti ti-check"></i> Seat map designer</li>
+            <li><i class="ti ti-check"></i> Real-time analytics</li>
+            <li><i class="ti ti-check"></i> Payout management</li>
+          </ul>
+          <a href="pages/organizers.html" class="party-cta">List your event →</a>
+        </div>
+        <div class="party-card party-center" data-role="vibepass">
+          <div class="party-icon vp-icon"><img src="assets/images/Logo-192.png" alt="VibePass" /></div>
+          <div class="party-tag vp-tag">VibePass.lk</div>
+          <h3>The bridge</h3>
+          <p>We are the trusted third party connecting organizers with audiences and invitation senders with their guests.</p>
+          <ul class="party-perks">
+            <li><i class="ti ti-check"></i> Secure payments</li>
+            <li><i class="ti ti-check"></i> QR e-tickets</li>
+            <li><i class="ti ti-check"></i> Invitation builder</li>
+            <li><i class="ti ti-check"></i> 24/7 support</li>
+          </ul>
+        </div>
+        <div class="party-card" data-role="customer">
+          <div class="party-icon"><i class="ti ti-users"></i></div>
+          <div class="party-tag">Customers & Guests</div>
+          <h3>Book & attend</h3>
+          <p>Browse local shows, pick your seats, pay securely and get your QR e-ticket instantly. Receive and RSVP to digital invitations.</p>
+          <ul class="party-perks">
+            <li><i class="ti ti-check"></i> Instant e-tickets</li>
+            <li><i class="ti ti-check"></i> Seat selection</li>
+            <li><i class="ti ti-check"></i> RSVP to invites</li>
+            <li><i class="ti ti-check"></i> My tickets dashboard</li>
+          </ul>
+          <a href="pages/register.html" class="party-cta">Join free →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ EVENTS ═══════════════════════════ -->
+  <section class="events-section" id="events">
+    <div class="container">
+      <div class="section-top">
+        <div>
+          <div class="section-label">Upcoming shows</div>
+          <h2 class="section-title">Find your next experience</h2>
+        </div>
+        <a href="pages/events.html" class="btn btn-ghost-sm">View all events →</a>
+      </div>
+      <!-- Category filter -->
+      <div class="cat-filters" id="catFilters">
+        <button class="cat-btn active" data-cat="all">All</button>
+        <button class="cat-btn" data-cat="music">🎵 Music</button>
+        <button class="cat-btn" data-cat="theatre">🎭 Theatre</button>
+        <button class="cat-btn" data-cat="comedy">😂 Comedy</button>
+        <button class="cat-btn" data-cat="dance">💃 Dance</button>
+        <button class="cat-btn" data-cat="art">🎨 Art & Culture</button>
+      </div>
+      <!-- Events grid -->
+      <div class="events-grid" id="eventsGrid">
+        <!-- populated by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ INVITATIONS ═══════════════════════════ -->
+  <section class="invitations-section" id="invitations">
+    <div class="container">
+      <div class="section-top">
+        <div>
+          <div class="section-label">Digital invitations</div>
+          <h2 class="section-title">Invite beautifully</h2>
+        </div>
+        <a href="pages/invitations.html" class="btn btn-ghost-sm">See all templates →</a>
+      </div>
+      <p class="section-desc">Choose a template, personalise your details, and share via WhatsApp, email, or a link. Your guests can RSVP directly through VibePass.</p>
+      <div class="invite-templates" id="inviteTemplates">
+        <!-- populated by script.js -->
+      </div>
+      <div class="invite-cta-box">
+        <div class="icb-left">
+          <h3>Ready to create your invitation?</h3>
+          <p>Sign up free and start designing in minutes.</p>
+        </div>
+        <a href="pages/invitations.html" class="btn btn-primary">
+          <i class="ti ti-edit"></i> Start designing
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOR ORGANIZERS ═══════════════════════════ -->
+  <section class="organizer-section">
+    <div class="container">
+      <div class="org-inner">
+        <div class="org-text">
+          <div class="section-label">For organizers</div>
+          <h2 class="section-title">Your shows deserve a bigger audience</h2>
+          <p>VibePass gives event organizers in Sri Lanka a professional, easy-to-use platform to sell tickets, manage seats, and track sales — with no upfront cost.</p>
+          <ul class="org-features">
+            <li><i class="ti ti-chart-bar"></i> <div><strong>Real-time sales dashboard</strong><span>Track ticket sales and revenue as they happen</span></div></li>
+            <li><i class="ti ti-qrcode"></i> <div><strong>QR code check-in</strong><span>Fast, fraud-proof entry management at your event</span></div></li>
+            <li><i class="ti ti-armchair"></i> <div><strong>Seat map builder</strong><span>Design your venue layout and set pricing per zone</span></div></li>
+            <li><i class="ti ti-currency-dollar"></i> <div><strong>Transparent payouts</strong><span>Receive your earnings within 3 business days after the event</span></div></li>
+          </ul>
+          <a href="pages/organizers.html" class="btn btn-primary">
+            <i class="ti ti-microphone-2"></i> List your event
+          </a>
+        </div>
+        <div class="org-visual">
+          <div class="dashboard-mock">
+            <div class="dm-header">
+              <span class="dm-dot red"></span><span class="dm-dot yellow"></span><span class="dm-dot green"></span>
+              <span class="dm-title">Organizer Dashboard</span>
+            </div>
+            <div class="dm-stats">
+              <div class="dm-stat"><div class="dm-snum">342</div><div class="dm-slabel">Tickets sold</div></div>
+              <div class="dm-stat"><div class="dm-snum">LKR 513K</div><div class="dm-slabel">Revenue</div></div>
+              <div class="dm-stat"><div class="dm-snum">89%</div><div class="dm-slabel">Capacity</div></div>
+            </div>
+            <div class="dm-bar-label">Sales by day</div>
+            <div class="dm-bars">
+              <div class="dm-bar" style="height:40%"><span>Mon</span></div>
+              <div class="dm-bar" style="height:65%"><span>Tue</span></div>
+              <div class="dm-bar" style="height:50%"><span>Wed</span></div>
+              <div class="dm-bar" style="height:80%"><span>Thu</span></div>
+              <div class="dm-bar" style="height:95%"><span>Fri</span></div>
+              <div class="dm-bar" style="height:70%"><span>Sat</span></div>
+              <div class="dm-bar" style="height:55%"><span>Sun</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ TESTIMONIALS ═══════════════════════════ -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-label" style="text-align:center;">What people say</div>
+      <h2 class="section-title" style="text-align:center;">Loved by organizers & attendees</h2>
+      <div class="testi-grid" id="testiGrid">
+        <!-- populated by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CTA BANNER ═══════════════════════════ -->
+  <section class="cta-banner">
+    <div class="cta-orb"></div>
+    <div class="container cta-inner">
+      <h2>Ready to experience the Vibe?</h2>
+      <p>Join thousands of Sri Lankans discovering local shows and creating unforgettable invitations.</p>
+      <div class="cta-actions">
+        <a href="pages/register.html" class="btn btn-white btn-lg">
+          <i class="ti ti-user-plus"></i> Create free account
+        </a>
+        <a href="pages/organizers.html" class="btn btn-outline-white btn-lg">
+          <i class="ti ti-microphone-2"></i> List your show
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">
+            <img src="assets/images/Logo-192.png" alt="VibePass" class="logo-img" />
+            <span class="logo-text">VibePass<span class="logo-lk">.lk</span></span>
+          </div>
+          <p>Sri Lanka's platform for local event ticketing and digital invitation creation.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+            <a href="#" aria-label="TikTok"><i class="ti ti-brand-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="pages/events.html">Browse events</a>
+          <a href="pages/invitations.html">Create invitation</a>
+          <a href="pages/organizers.html">For organizers</a>
+          <a href="pages/pricing.html">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="pages/about.html">About us</a>
+          <a href="pages/contact.html">Contact</a>
+          <a href="pages/careers.html">Careers</a>
+          <a href="pages/blog.html">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="pages/faq.html">FAQ</a>
+          <a href="pages/contact.html">Help centre</a>
+          <a href="pages/privacy.html">Privacy policy</a>
+          <a href="pages/terms.html">Terms of service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 VibePass.lk — All rights reserved.</span>
+        <span>Made with ❤️ in Sri Lanka 🇱🇰</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

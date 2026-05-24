@@ -27,6 +27,7 @@
   <nav class="navbar scrolled"><div class="nav-inner"><a href="../index.html" class="logo"><img src="../assets/images/Logo-192.png" alt="VibePass" class="logo-img" /><span class="logo-text">VibePass<span class="logo-lk">.lk</span></span></a><div class="nav-actions"><a href="login.html" class="btn btn-ghost">Sign in</a><a href="register.html" class="btn btn-primary">Get started</a></div></div></nav>
   <section class="page-hero"><div class="container"><div class="section-label">Privacy</div><h1>Privacy policy</h1><p>How VibePass stores and protects customer, organizer, payment, and QR ticket data.</p></div></section>
   <section style="padding:72px 0;"><div class="container policy-content"><h2>Data stored</h2><p>VibePass stores names, email addresses, payment references, QR ticket data, RSVP records, organizer verification documents, and bank account details needed for the documented platform flows.</p><h2>Security</h2><ul><li>Passwords are encrypted with bcrypt.</li><li>API sessions use JWT authentication.</li><li>Suspicious login, duplicate scans, and fraud-related activity can be tracked in audit logs.</li><li>Payment credentials are configured through environment variables and are not hardcoded.</li></ul><h2>Notifications</h2><p>Email, SMS, WhatsApp, and push notifications require provider credentials before production use.</p></div></section>
-  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/env.js"></script>
+  <script type="module" src="../assets/js/api.js"></script>
 </body>
 </html>

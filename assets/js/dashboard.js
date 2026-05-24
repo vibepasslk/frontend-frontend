@@ -24,6 +24,10 @@ async function loadCustomerDashboard() {
     renderInvitations(data.invitations);
     renderNotifications(data.notifications);
   } catch (error) {
+    console.error('Customer dashboard failed to load:', error);
+    renderDashboardError('ordersList', 'Could not load your tickets right now.');
+    renderDashboardError('invitationsList', 'Could not load your invitations right now.');
+    renderDashboardError('notificationsList', 'Could not load notifications right now.');
     VibePass.toast(error.message, 'error');
   }
 }
@@ -43,6 +47,9 @@ async function loadOrganizerDashboard() {
     renderOrganizerEvents(data.events || []);
     renderOrders(data.orders || []);
   } catch (error) {
+    console.error('Organizer dashboard failed to load:', error);
+    renderDashboardError('organizerEventsList', 'Could not load organizer events right now.');
+    renderDashboardError('ordersList', 'Could not load organizer orders right now.');
     VibePass.toast(error.message, 'error');
   }
 }
@@ -69,8 +76,17 @@ async function loadAdminDashboard() {
     const withdrawals = await VibePass.request('/withdrawals/admin?limit=8');
     renderWithdrawals(withdrawals.withdrawals || []);
   } catch (error) {
+    console.error('Super admin dashboard failed to load:', error);
+    renderDashboardError('adminEventsList', 'Could not load event reviews right now.');
+    renderDashboardError('adminOrganizersList', 'Could not load organizer reviews right now.');
+    renderDashboardError('adminWithdrawalsList', 'Could not load withdrawals right now.');
     VibePass.toast(error.message, 'error');
   }
+}
+
+function renderDashboardError(id, message) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = `<div class="empty-state">${escapeHtml(message)}</div>`;
 }
 
 function initScanner() {

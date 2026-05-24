@@ -142,6 +142,16 @@
   cursor: pointer; transition: var(--transition); margin-top: 8px;
 }
 .form-submit:hover { background: var(--primary-light); transform: translateY(-1px); }
+.form-error {
+  margin-bottom: 14px;
+  padding: 11px 12px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(239,68,68,0.45);
+  background: rgba(239,68,68,0.08);
+  color: #FCA5A5;
+  font-size: 14px;
+  line-height: 1.45;
+}
 .auth-alt { text-align: center; margin-top: 20px; font-size: 14px; color: var(--text-3); }
 .auth-alt a { color: var(--primary-light); font-weight: 500; }
 .form-divider { text-align: center; color: var(--text-3); font-size: 13px; margin: 16px 0; position: relative; }

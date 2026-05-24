@@ -310,20 +310,15 @@ renderEvents = async function renderEventsFromApi(cat) {
 };
 
 async function loadPublicEvents() {
-  const apiBase = window.VibePass?.API_BASE || localStorage.getItem('vibepass_api_base') || (
-    ['vibepass.lk', 'www.vibepass.lk'].includes(window.location.hostname) || window.location.hostname.endsWith('.vercel.app')
-      ? 'https://api.vibepass.lk/api'
-      : 'http://localhost:5000/api'
-  );
+  if (!window.VibePass?.request) return STATIC_EVENTS;
 
   try {
-    const response = await fetch(`${apiBase}/events?limit=12`, { headers: { Accept: 'application/json' } });
-    const payload = await response.json();
-    if (!response.ok || !payload.success) throw new Error('Events API unavailable');
-    const events = payload.data.events || [];
+    const data = await window.VibePass.request('/api/events?limit=12');
+    const events = data.events || [];
     if (!events.length) return STATIC_EVENTS;
     return events.map(normalizeApiEvent);
-  } catch (_error) {
+  } catch (error) {
+    console.error('Public events API unavailable:', error);
     return STATIC_EVENTS;
   }
 }

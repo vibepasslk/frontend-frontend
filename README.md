@@ -4,19 +4,13 @@ Static HTML, CSS, and JavaScript frontend for VibePass.lk.
 
 ## Deploy
 
-1. Push this folder as the `frontend` GitHub repository.
-2. Import it into Vercel.
-3. Use the `Other` framework preset.
-4. Leave the root directory empty.
-5. Add `vibepass.lk` and `www.vibepass.lk` in Vercel project domains.
+1. Set `VITE_API_URL` in your frontend host environment.
+2. Run `npm install`.
+3. Run `npm run build`.
+4. Publish the generated `dist` folder.
+5. Add `vibepass.lk` and `www.vibepass.lk` in the frontend project domains.
 
-The frontend automatically uses:
-
-```text
-https://api.vibepass.lk/api
-```
-
-when hosted on `vibepass.lk`, `www.vibepass.lk`, or a Vercel preview domain.
+The build fails if `VITE_API_URL` is missing. The generated `assets/js/env.js` file passes that value to the static frontend at runtime, and API calls are normalized to `/api/*`.
 
 ## Local Preview
 
